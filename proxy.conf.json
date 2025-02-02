@@ -1,0 +1,10 @@
+{
+  "/gestionStock/*": {
+    "target": "http://localhost/gestionStock/",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/gestionStock": ""
+    }
+  }
+}

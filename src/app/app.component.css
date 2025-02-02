@@ -1,0 +1,45 @@
+.m-t-50 {
+    margin-top: 50px;
+}
+.m-t-30 {
+    margin-top: 30px;
+}
+input{
+    margin:5px;
+}
+label {
+    text-align: center;  /* Center text inside the label */
+  }
+
+.m-r-l-15{
+    margin-right:15px;
+    margin-left: 15px;
+}
+
+table{
+    table-layout: fixed; 
+}
+
+.w-46{
+    width:46%;
+}
+
+.btn-container {
+    justify-content: space-between;  /* Espacement égal entre les boutons */
+  }
+
+.m-r-10{
+    margin-right: 10px;
+}
+
+.t-c{
+    text-align: center;
+}
+
+.f-p{
+    font-size: 13px;
+    padding: 5px;
+}
+
+
+ 

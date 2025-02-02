@@ -1,0 +1,158 @@
+
+    <div class="container text-center">
+      <div class="row m-t-50">
+        <div class="col-4"></div>
+        <div class="col-4"><h3>Article</h3></div>
+        <div class="col-4"></div>
+      </div>
+
+      <div class="row m-t-30">
+        <div class="col-2"></div>
+        <div class="col-4">
+          <label for="nomArticle" class="form-label">Nom d'article
+          </label></div>
+        <div class="col-4"><input type="text" class="form-control" id="nomArticle" [(ngModel)]="nomArticle">
+          </div>
+        <div class="col-2"></div>
+
+
+        <div class="col-2"></div>
+        <div class="col-4">
+          <label for="modelArticle" class="form-label">Model
+          </label></div>
+        <div class="col-4"><input type="text" class="form-control" id="modelArticle" [(ngModel)]="model">
+          </div>
+        <div class="col-2"></div>
+
+        <div class="col-2"></div>
+        <div class="col-4">
+          <label for="marqueArticle" class="form-label">Marque
+          </label></div>
+        <div class="col-4"><input type="text" class="form-control" id="marqueArticle" [(ngModel)]="marque">
+          </div>
+        <div class="col-2"></div>
+      
+
+        <div class="col-2"></div> 
+        <div class="col-4">
+          <label for="categorieArticle" class="form-label">Catégorie
+          </label></div>
+        <div class="col-4"><input type="text" class="form-control" id="categorieArticle" [(ngModel)]="categorie">
+          </div>
+        <div class="col-2"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-4 mx-auto m-t-30">
+          <button type="button" class="btn btn-success w-100" (click)="addArticle()">Ajouter</button>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      </div>
+    
+
+
+  <!-- il tableau -->
+  
+  
+  <div class="row m-t-50">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="t-c">Nom</th>
+            <th scope="col" class="t-c">Model</th>
+            <th scope="col" class="t-c">Marque</th>
+            <th scope="col" class="t-c">Catégorie</th>
+            <th scope="col" class="t-c">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let article of articles; let i = index">
+            <td>
+              <ng-container *ngIf="isEditing && editingIndex === i">
+                <input [(ngModel)]="article.nom" class="form-control" />
+              </ng-container>
+              <ng-container *ngIf="!(isEditing && editingIndex === i)">
+                {{ article.nom }}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="isEditing && editingIndex === i">
+                <input [(ngModel)]="article.model" class="form-control" />
+              </ng-container>
+              <ng-container *ngIf="!(isEditing && editingIndex === i)">
+                {{ article.model }}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="isEditing && editingIndex === i">
+                <input [(ngModel)]="article.marque" class="form-control" />
+              </ng-container>
+              <ng-container *ngIf="!(isEditing && editingIndex === i)">
+                {{ article.marque }}
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="isEditing && editingIndex === i">
+                <input [(ngModel)]="article.category" class="form-control" />
+              </ng-container>
+              <ng-container *ngIf="!(isEditing && editingIndex === i)">
+                {{ article.category }}
+              </ng-container>
+            </td>
+            <td class="btn-container">
+              <button *ngIf="!isEditing || editingIndex !== i" type="button" class="btn btn-outline-success w-46 m-r-10 t-c f-p" (click)="modifierArticle(i)">Modifier</button>
+              <button *ngIf="isEditing && editingIndex === i" type="button" class="btn btn-outline-success" style="margin: 5px; width:100%"  data-bs-toggle="modal" data-bs-target="#sauvgarderModal">
+              Sauvegarder</button>
+              
+              <!-- sauvegarderModal -->
+              <div class="modal fade" id="sauvgarderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-danger">⚠️ Confirmation de modification</h5>
+                    </div>
+                    <div class="modal-body">
+                      Êtes-vous sûr de vouloir faire ces modifications ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="cancelEdit()" data-bs-dismiss="modal">Annuler</button>
+                      <button type="button" class="btn btn-success" (click)="saveChanges(i)" data-bs-dismiss="modal">Sauvgarder</button>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+            <button *ngIf="!isEditing" type="button" class="btn btn-outline-danger w-46 t-c f-p"  data-bs-toggle="modal" data-bs-target="#suppModal">
+            Supprimer</button>
+  
+            <!-- supprimerderModal -->
+            <div class="modal fade" id="suppModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-danger">⚠️ Confirmation de suppression</h5>
+                  </div>
+                  <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer cet article ?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success" (click)="suppArticle(i)" data-bs-dismiss="modal">Supprimer</button>
+                  </div>
+                </div>
+              </div>
+            </div>  
+              
+
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2"></div>
+  </div>
