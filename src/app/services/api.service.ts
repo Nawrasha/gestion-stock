@@ -6,12 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
+
+  
   constructor(
     private httpClient: HttpClient ) { }
 
     async getArticle() {
       return await this.httpClient.get(`/gestionStock/getArticle.php`).toPromise();
     }
+    
 }
 // get
 // post
