@@ -1,0 +1,33 @@
+/* Sidebar styling */
+.sidebar {
+    width: 100%;
+    margin: 0px;
+    height: 100vh;
+    padding-top: 40px;
+    overflow-y: auto;
+  }
+  
+
+ 
+  
+  /* Sidebar links */
+  .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 15px 20px;
+  }
+  
+  .list-group-item a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s ease;
+  }
+  
+  .list-group-item a:hover,
+  .list-group-item .active {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 8px 15px;
+  }
+  
